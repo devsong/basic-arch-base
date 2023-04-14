@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <!-- 日志存放路径 -->
+    <property name="log.path" value="/tmp/.data/${appName}"/>
+    <!-- 日志输出格式 -->
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20}  %X{traceId} %X{spanId} - %msg%n"/>
+    <!-- 服务器上日志保留最长天数 -->
+    <property name="log.maxHistory" value="7"/>
+
+    <conversionRule conversionWord="ip" converterClass="logback.convert.io.github.devsong.base.common.LogIpConvert"/>
+
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 性能监控日志输出 -->
+    <appender name="perf_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/perf.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${log.path}/perf.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- param日志输出 -->
+    <appender name="param_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/param.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${log.path}/param.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 系统info日志输出 -->
+    <appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/info.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${log.path}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志最大的历史 60天 -->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">
+                <pattern>
+                    <pattern>
+                        {
+                        "product":"${product}",
+                        "groupName":"${group}",
+                        "app":"${appName}",
+                        "ip":"%ip",
+                        "thread":"%thread",
+                        "filepath":"%class:%line",
+                        "log_level":"%level",
+                        "traceId":"%X{traceId}",
+                        "spanId":"%X{spanId}",
+                        "msg":"%msg",
+                        "stack_trace": "%exception",
+                        "timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss.SSS}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <append>true</append>
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!-- 过滤的级别 -->
+            <level>INFO</level>
+            <!-- 匹配时的操作：接收（记录） -->
+            <onMatch>ACCEPT</onMatch>
+            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 系统error日志输出 -->
+    <appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/error.log</file>
+        <!-- 循环政策：基于时间创建日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 日志文件名格式 -->
+            <fileNamePattern>${log.path}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 日志最大的历史 60天 -->
+            <maxHistory>${log.maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">
+                <pattern>
+                    <pattern>
+                        {
+                        "product":"${product}",
+                        "groupName":"${group}",
+                        "app":"${appName}",
+                        "ip":"%ip",
+                        "thread":"%thread",
+                        "filepath":"%class:%line",
+                        "log_level":"%level",
+                        "traceId":"%X{traceId}",
+                        "spanId":"%X{spanId}",
+                        "msg":"%msg",
+                        "stack_trace": "%exception",
+                        "timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss.SSS}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!-- 过滤的级别 -->
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <!-- 系统模块日志级别控制 -->
+    <logger name="io.github.devsong" level="info"/>
+    <!-- Spring日志级别控制 -->
+    <logger name="org.springframework" level="warn"/>
+    <!-- archunit test log level -->
+    <logger name="com.tngtech.archunit" level="info"/>
+    <!-- 性能监控日志logger -->
+    <logger name="sysPerfLogger" level="info" additivity="false">
+        <appender-ref ref="perf_file"/>
+    </logger>
+    <!-- 输入输出参数logger -->
+    <logger name="sysParamLogger" level="info" additivity="false">
+        <appender-ref ref="param_file"/>
+    </logger>
+
+    <springProfile name="local,dev,test">
+        <root level="info">
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="qa,uat,gray,pre,prod">
+        <root level="info">
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+        </root>
+    </springProfile>
+</included>
