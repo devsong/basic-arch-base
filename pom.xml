@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <groupId>io.github.devsong</groupId>
+    <groupId>io.github.devsong.base</groupId>
     <artifactId>basic-arch-base</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -29,9 +29,10 @@
     </properties>
 
     <modules>
-        <module>basic-arch-entity</module>
-        <module>basic-arch-common</module>
-        <module>basic-arch-log</module>
+        <module>base-entity</module>
+        <module>base-common</module>
+        <module>base-log</module>
+        <module>base-test</module>
     </modules>
 
     <dependencyManagement>
@@ -99,6 +100,7 @@
     </distributionManagement>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
