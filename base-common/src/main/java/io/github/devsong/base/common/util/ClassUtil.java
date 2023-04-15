@@ -30,7 +30,7 @@ public class ClassUtil {
      * 在当前项目中寻找指定包下的所有类
      *
      * @param packageName 用'.'分隔的包名
-     * @param recursion   是否递归搜索
+     * @param recursive   是否递归搜索
      * @return 该包名下的所有类
      */
     public static List<Class<?>> getClass(String packageName, boolean recursive) {

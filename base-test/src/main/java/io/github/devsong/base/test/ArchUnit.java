@@ -12,7 +12,7 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
 
 @AnalyzeClasses(packages = GlobalConstant.SYSTEM_PACKAGE_PREFIX, importOptions = {ImportOption.OnlyIncludeTests.class})
-public class ArchUnit extends TestBase {
+public class ArchUnit extends BaseTest {
 
     @ArchTest
     protected final ArchRule test_class_should_be_package_private =

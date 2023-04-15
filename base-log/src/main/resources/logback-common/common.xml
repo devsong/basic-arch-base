@@ -7,7 +7,7 @@
     <!-- 服务器上日志保留最长天数 -->
     <property name="log.maxHistory" value="7"/>
 
-    <conversionRule conversionWord="ip" converterClass="logback.convert.io.github.devsong.base.common.LogIpConvert"/>
+    <conversionRule conversionWord="ip" converterClass="io.github.devsong.base.log.convert.LogIpConvert"/>
 
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

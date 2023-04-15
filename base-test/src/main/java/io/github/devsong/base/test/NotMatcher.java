@@ -10,19 +10,19 @@ import java.util.Objects;
  * author:guanzhisong
  */
 public class NotMatcher<T> extends BaseMatcher {
-    T code;
+    T result;
 
-    public NotMatcher(T code) {
-        this.code = code;
+    public NotMatcher(T result) {
+        this.result = result;
     }
 
     @Override
     public boolean matches(Object actual) {
-        return Objects.equals(this.code, actual);
+        return !Objects.equals(this.result, actual);
     }
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("not " + this.code);
+        description.appendText("not " + this.result);
     }
 }
