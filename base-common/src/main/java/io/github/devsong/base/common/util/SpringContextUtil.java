@@ -8,7 +8,7 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 /**
  * spring工具类 方便在非spring管理环境中获取bean
- * 
+ *
  * @author guanzhisong
  */
 public final class SpringContextUtil implements BeanFactoryPostProcessor {
@@ -93,7 +93,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
 
     /**
      * 获取aop代理对象
-     * 
+     *
      * @param invoker
      * @return
      */
@@ -104,7 +104,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
 
     /**
      * 向容器中注册bean
-     * 
+     *
      * @param beanName
      * @param bean
      */

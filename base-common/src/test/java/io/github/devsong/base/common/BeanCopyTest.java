@@ -3,10 +3,9 @@ package io.github.devsong.base.common;
 import com.google.common.collect.Lists;
 import io.github.devsong.base.common.util.BeanUtil;
 import io.github.devsong.base.common.util.JsonUtil;
+import java.util.List;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 class BeanCopyTest {
 
@@ -26,7 +25,6 @@ class BeanCopyTest {
         listDesc = BeanUtil.copyList(listSrc, Bar.class);
         System.out.println(JsonUtil.toJSONString(listDesc));
     }
-
 }
 
 @Data
@@ -48,6 +46,5 @@ class Bar {
     private String name;
     private String idBar;
 
-    public Bar() {
-    }
+    public Bar() {}
 }

@@ -1,9 +1,8 @@
 package io.github.devsong.base.entity;
 
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 
 /**
  * 通用的异常返回Code
@@ -13,7 +12,6 @@ import java.util.Map;
  */
 @Getter
 public enum ResponseCode {
-
     SYS_ERROR(-1, "系统异常"),
 
     SUCCESS(0, "success"),

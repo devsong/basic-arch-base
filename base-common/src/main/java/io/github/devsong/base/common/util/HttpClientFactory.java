@@ -1,5 +1,7 @@
 package io.github.devsong.base.common.util;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ServiceUnavailableRetryStrategy;
@@ -17,9 +19,6 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.ssl.SSLContexts;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-
 /**
  * @author guanzhisong
  * <p>
@@ -27,7 +26,7 @@ import javax.net.ssl.SSLContext;
  * @see <a href="https://hc.apache.org/httpcomponents-client-4.5.x/httpclient/examples/org/apache/http/examples/client/ClientConfiguration.java">httpclient 配置</a>
  */
 public class HttpClientFactory {
-    public final static int CONNECTION_TIMEOUT = 10 * 1000;
+    public static final int CONNECTION_TIMEOUT = 10 * 1000;
     private static volatile CloseableHttpClient defaultClient;
     private static final int CONN_PER_ROUTE = 256;
     private static final int CONN_MAX_TOTAL = 1024;
@@ -48,7 +47,8 @@ public class HttpClientFactory {
                 builder.register("https", new SSLConnectionSocketFactory(sslcontext, HOSTNAME_VERIFIER));
                 Registry<ConnectionSocketFactory> socketFactoryRegistry = builder.build();
 
-                PoolingHttpClientConnectionManager manager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
+                PoolingHttpClientConnectionManager manager =
+                        new PoolingHttpClientConnectionManager(socketFactoryRegistry);
                 manager.setMaxTotal(CONN_MAX_TOTAL);
                 manager.setDefaultMaxPerRoute(CONN_PER_ROUTE);
 
@@ -73,8 +73,9 @@ public class HttpClientFactory {
      * @param sslContext
      * @return
      */
-    public synchronized static CloseableHttpClient get(SSLContext sslContext) {
-        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, TLS_VERSION, null, HOSTNAME_VERIFIER);
+    public static synchronized CloseableHttpClient get(SSLContext sslContext) {
+        SSLConnectionSocketFactory sslsf =
+                new SSLConnectionSocketFactory(sslContext, TLS_VERSION, null, HOSTNAME_VERIFIER);
         CloseableHttpClient client = HttpClientBuilder.create()
                 .setSSLSocketFactory(sslsf)
                 .setDefaultRequestConfig(requestConfig)
@@ -102,12 +103,13 @@ public class HttpClientFactory {
 }
 
 class DefaultServiceUnavailableRetryStrategy implements ServiceUnavailableRetryStrategy {
-    public final static int MAX_RETRIES = 3;
-    public final static int RETRY_INTERVAL = 1000;
+    public static final int MAX_RETRIES = 3;
+    public static final int RETRY_INTERVAL = 1000;
 
     @Override
     public boolean retryRequest(HttpResponse response, int executionCount, HttpContext context) {
-        return executionCount <= MAX_RETRIES && response.getStatusLine().getStatusCode() >= HttpStatus.SC_INTERNAL_SERVER_ERROR;
+        return executionCount <= MAX_RETRIES
+                && response.getStatusLine().getStatusCode() >= HttpStatus.SC_INTERNAL_SERVER_ERROR;
     }
 
     @Override

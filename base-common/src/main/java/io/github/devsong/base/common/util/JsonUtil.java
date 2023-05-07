@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import java.util.List;
 
 public class JsonUtil {
@@ -65,7 +64,6 @@ public class JsonUtil {
         }
         return null;
     }
-
 
     /**
      * json到对象

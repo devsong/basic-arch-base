@@ -2,7 +2,7 @@ package io.github.devsong.base.common;
 
 /**
  * 返回状态码
- * 
+ *
  * @author guanzhisong
  */
 public interface HttpStatus {
@@ -30,7 +30,7 @@ public interface HttpStatus {
      * 资源已被移除
      */
     int MOVED_PERM = 301;
-    
+
     /**
      * 临时重定向
      */

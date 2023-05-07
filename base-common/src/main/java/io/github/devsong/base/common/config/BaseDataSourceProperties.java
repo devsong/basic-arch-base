@@ -12,7 +12,8 @@ import lombok.Data;
 public class BaseDataSourceProperties {
     protected static final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
     // protected static final String DEFAULT_DRIVER = "com.mysql.jdbc.Driver";
-    protected static final String DEFAULT_MYSQL_CONNECT_PARAMS = "serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&zeroDateTimeBehavior=convertToNull";
+    protected static final String DEFAULT_MYSQL_CONNECT_PARAMS =
+            "serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&zeroDateTimeBehavior=convertToNull";
 
     protected String driverClassName = DEFAULT_DRIVER;
 

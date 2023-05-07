@@ -1,11 +1,9 @@
 package io.github.devsong.base.common.aspect;
 
-
 import io.github.devsong.base.common.AppCoordinate;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 /**
  * 记录接口请求中的参数,类似于nginx/httpd中的access log功能

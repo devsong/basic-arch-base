@@ -12,7 +12,6 @@ public interface GlobalConstant {
     String DATE_FORMAT = "yyyy-MM-dd";
     String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-
     /**
      * 集成测试专用的profile
      */

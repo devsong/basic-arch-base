@@ -8,9 +8,7 @@ public enum StatusEnums {
 
     UNENABLE(1, "禁用"),
 
-    DELETE(2, "删除")
-
-    ;
+    DELETE(2, "删除");
 
     int code;
     String desc;

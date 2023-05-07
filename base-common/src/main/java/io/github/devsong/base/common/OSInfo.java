@@ -15,8 +15,7 @@ public class OSInfo {
 
     private EPlatform platform;
 
-    private OSInfo() {
-    }
+    private OSInfo() {}
 
     public static boolean isLinux() {
         return OS.contains("linux");

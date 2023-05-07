@@ -5,12 +5,11 @@ import ch.vorburger.mariadb4j.DBConfigurationBuilder;
 import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
 import com.zaxxer.hikari.HikariDataSource;
 import io.github.devsong.base.common.OSInfo;
+import java.util.Random;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SystemUtils;
 import org.flywaydb.core.Flyway;
-
-import javax.sql.DataSource;
-import java.util.Random;
 
 /**
  * date:  2023/4/20
@@ -50,7 +49,9 @@ public class Mariadb4jUtil {
         return mariaDB4jSpringService;
     }
 
-    public static DataSource buildDataSource(MariaDB4jSpringService mariaDB4jSpringService, String schema, String migrationScriptPath) throws ManagedProcessException {
+    public static DataSource buildDataSource(
+            MariaDB4jSpringService mariaDB4jSpringService, String schema, String migrationScriptPath)
+            throws ManagedProcessException {
         mariaDB4jSpringService.getDB().createDB(schema);
         DBConfigurationBuilder config = mariaDB4jSpringService.getConfiguration();
         HikariDataSource hikariDataSource = new HikariDataSource();

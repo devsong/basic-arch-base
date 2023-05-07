@@ -1,6 +1,5 @@
 package io.github.devsong.base.common;
 
-
 import io.github.devsong.base.common.util.Base62;
 import org.junit.jupiter.api.Test;
 

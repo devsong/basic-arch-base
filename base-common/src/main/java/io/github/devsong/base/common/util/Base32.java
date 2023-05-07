@@ -136,10 +136,21 @@ public final class Base32 {
     private static final String[] STRING_SET_CHAR_STD = new String[32];
 
     private static final String[] LIST_STR_ZERO = {
-            "0", "0", "00", "000", "0000",
-            "00000", "000000", "0000000", "00000000",
-            "000000000","0000000000", "00000000000", "000000000000", "0000000000000"
-            };
+        "0",
+        "0",
+        "00",
+        "000",
+        "0000",
+        "00000",
+        "000000",
+        "0000000",
+        "00000000",
+        "000000000",
+        "0000000000",
+        "00000000000",
+        "000000000000",
+        "0000000000000"
+    };
 
     static {
         String str = BASE_STR_OUTPUT;
@@ -240,24 +251,24 @@ public final class Base32 {
         }
         // 核查末尾字符。
         switch (mod) {
-        case 2:
-            charset = Base32.HASH_BASE32_MOD2;
-            ret += 1;
-            break; // switch (mod) {
-        case 4:
-            charset = Base32.HASH_BASE32_MOD4;
-            ret += 2;
-            break; // switch (mod) {
-        case 5:
-            charset = Base32.HASH_BASE32_MOD5;
-            ret += 3;
-            break; // switch (mod) {
-        case 7:
-            charset = Base32.HASH_BASE32_MOD7;
-            ret += 4;
-            break; // switch (mod) {
-        default:
-            return 0;
+            case 2:
+                charset = Base32.HASH_BASE32_MOD2;
+                ret += 1;
+                break; // switch (mod) {
+            case 4:
+                charset = Base32.HASH_BASE32_MOD4;
+                ret += 2;
+                break; // switch (mod) {
+            case 5:
+                charset = Base32.HASH_BASE32_MOD5;
+                ret += 3;
+                break; // switch (mod) {
+            case 7:
+                charset = Base32.HASH_BASE32_MOD7;
+                ret += 4;
+                break; // switch (mod) {
+            default:
+                return 0;
         }
         for (int i = 0; i < mod; i++) {
             c = data.charAt(length + i);
@@ -283,7 +294,8 @@ public final class Base32 {
      * @throws IndexOutOfBoundsException
      *             offset < 0 || length < 0 || offset + length > data.length 时, 抛出该异常。
      */
-    public static int isValidBase32Char(byte[] data, int offset, int length) throws IndexOutOfBoundsException, NullPointerException {
+    public static int isValidBase32Char(byte[] data, int offset, int length)
+            throws IndexOutOfBoundsException, NullPointerException {
         if (length <= 0) {
             return 0;
         }
@@ -300,24 +312,24 @@ public final class Base32 {
         }
         // 核查末尾字符。
         switch (mod) {
-        case 2:
-            charset = Base32.HASH_BASE32_MOD2;
-            ret += 1;
-            break; // switch (mod) {
-        case 4:
-            charset = Base32.HASH_BASE32_MOD4;
-            ret += 2;
-            break; // switch (mod) {
-        case 5:
-            charset = Base32.HASH_BASE32_MOD5;
-            ret += 3;
-            break; // switch (mod) {
-        case 7:
-            charset = Base32.HASH_BASE32_MOD7;
-            ret += 4;
-            break; // switch (mod) {
-        default:
-            return 0;
+            case 2:
+                charset = Base32.HASH_BASE32_MOD2;
+                ret += 1;
+                break; // switch (mod) {
+            case 4:
+                charset = Base32.HASH_BASE32_MOD4;
+                ret += 2;
+                break; // switch (mod) {
+            case 5:
+                charset = Base32.HASH_BASE32_MOD5;
+                ret += 3;
+                break; // switch (mod) {
+            case 7:
+                charset = Base32.HASH_BASE32_MOD7;
+                ret += 4;
+                break; // switch (mod) {
+            default:
+                return 0;
         }
         for (int i = 0; i < mod; i++) {
             c = data[limit + i];
@@ -341,21 +353,21 @@ public final class Base32 {
         }
         int mod = length % 5, div = length / 5;
         switch (mod) {
-        case 0:
-            length = div * 8;
-            break; // switch (mod) {
-        case 1:
-            length = div * 8 + 2;
-            break; // switch (mod) {
-        case 2:
-            length = div * 8 + 4;
-            break; // switch (mod) {
-        case 3:
-            length = div * 8 + 5;
-            break; // switch (mod) {
-        case 4:
-            length = div * 8 + 7;
-            break; // switch (mod) {
+            case 0:
+                length = div * 8;
+                break; // switch (mod) {
+            case 1:
+                length = div * 8 + 2;
+                break; // switch (mod) {
+            case 2:
+                length = div * 8 + 4;
+                break; // switch (mod) {
+            case 3:
+                length = div * 8 + 5;
+                break; // switch (mod) {
+            case 4:
+                length = div * 8 + 7;
+                break; // switch (mod) {
         }
         return length;
     }
@@ -373,23 +385,23 @@ public final class Base32 {
         }
         int mod = length % 8, div = length / 8;
         switch (mod) {
-        case 0:
-            length = div * 5;
-            break; // switch (mod) {
-        case 2:
-            length = div * 5 + 1;
-            break; // switch (mod) {
-        case 4:
-            length = div * 5 + 2;
-            break; // switch (mod) {
-        case 5:
-            length = div * 5 + 3;
-            break; // switch (mod) {
-        case 7:
-            length = div * 5 + 4;
-            break; // switch (mod) {
-        default:
-            return 0;
+            case 0:
+                length = div * 5;
+                break; // switch (mod) {
+            case 2:
+                length = div * 5 + 1;
+                break; // switch (mod) {
+            case 4:
+                length = div * 5 + 2;
+                break; // switch (mod) {
+            case 5:
+                length = div * 5 + 3;
+                break; // switch (mod) {
+            case 7:
+                length = div * 5 + 4;
+                break; // switch (mod) {
+            default:
+                return 0;
         }
         return length;
     }
@@ -940,79 +952,79 @@ public final class Base32 {
         }
         lengthConvert = div * 8;
         switch (mod) {
-        case 1:
-            index = 0xFF & data[poi++];
-            value = index >> 3;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 2);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            lengthConvert += 2;
-            break; // switch (mod) {
-        case 2:
-            // byte 1
-            index = 0xFF & data[poi++];
-            value = index >> 3;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 2);
-            // byte 2
-            index = 0xFF & data[poi++];
-            value |= index >> 6;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index >> 1);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 4);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            lengthConvert += 4;
-            break; // switch (mod) {
-        case 3:
-            // byte 1
-            index = 0xFF & data[poi++];
-            value = index >> 3;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 2);
-            // byte 2
-            index = 0xFF & data[poi++];
-            value |= index >> 6;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index >> 1);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 4);
-            // byte 3
-            index = 0xFF & data[poi++];
-            value |= index >> 4;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 1);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            lengthConvert += 5;
-            break; // switch (mod) {
-        case 4:
-            // byte 1
-            index = 0xFF & data[poi++];
-            value = index >> 3;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 2);
-            // byte 2
-            index = 0xFF & data[poi++];
-            value |= index >> 6;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index >> 1);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 4);
-            // byte 3
-            index = 0xFF & data[poi++];
-            value |= index >> 4;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 1);
-            // byte 4
-            index = 0xFF & data[poi++];
-            value |= index >> 7;
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index >> 2);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            value = 0x1F & (index << 3);
-            buff.append(Base32.CHAR_SET_STD[value]);
-            lengthConvert += 7;
-            break; // switch (mod) {
+            case 1:
+                index = 0xFF & data[poi++];
+                value = index >> 3;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 2);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                lengthConvert += 2;
+                break; // switch (mod) {
+            case 2:
+                // byte 1
+                index = 0xFF & data[poi++];
+                value = index >> 3;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 2);
+                // byte 2
+                index = 0xFF & data[poi++];
+                value |= index >> 6;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index >> 1);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 4);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                lengthConvert += 4;
+                break; // switch (mod) {
+            case 3:
+                // byte 1
+                index = 0xFF & data[poi++];
+                value = index >> 3;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 2);
+                // byte 2
+                index = 0xFF & data[poi++];
+                value |= index >> 6;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index >> 1);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 4);
+                // byte 3
+                index = 0xFF & data[poi++];
+                value |= index >> 4;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 1);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                lengthConvert += 5;
+                break; // switch (mod) {
+            case 4:
+                // byte 1
+                index = 0xFF & data[poi++];
+                value = index >> 3;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 2);
+                // byte 2
+                index = 0xFF & data[poi++];
+                value |= index >> 6;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index >> 1);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 4);
+                // byte 3
+                index = 0xFF & data[poi++];
+                value |= index >> 4;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 1);
+                // byte 4
+                index = 0xFF & data[poi++];
+                value |= index >> 7;
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index >> 2);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                value = 0x1F & (index << 3);
+                buff.append(Base32.CHAR_SET_STD[value]);
+                lengthConvert += 7;
+                break; // switch (mod) {
         }
         return lengthConvert;
     }
@@ -1203,22 +1215,22 @@ public final class Base32 {
         }
         int lengthConvert = length / 8 * 5;
         switch (length % 8) {
-        case 0:
-            break; // switch (length % 8) {
-        case 2:
-            lengthConvert += 1;
-            break; // switch (length % 8) {
-        case 4:
-            lengthConvert += 2;
-            break; // switch (length % 8) {
-        case 5:
-            lengthConvert += 3;
-            break; // switch (length % 8) {
-        case 7:
-            lengthConvert += 4;
-            break; // switch (length % 8) {
-        default:
-            return null;
+            case 0:
+                break; // switch (length % 8) {
+            case 2:
+                lengthConvert += 1;
+                break; // switch (length % 8) {
+            case 4:
+                lengthConvert += 2;
+                break; // switch (length % 8) {
+            case 5:
+                lengthConvert += 3;
+                break; // switch (length % 8) {
+            case 7:
+                lengthConvert += 4;
+                break; // switch (length % 8) {
+            default:
+                return null;
         }
         byte[] buff = new byte[lengthConvert];
         if (0 == Base32.decodeBase32ToBytes(data, buff, 0)) {
@@ -1319,168 +1331,168 @@ public final class Base32 {
         }
         Map<Integer, Integer> hash = null;
         switch (mod) {
-        case 0:
-            break; // switch (mod) {
-        case 2:
-            hash = Base32.HASH_BASE32_MOD2;
-            // char 1
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
+            case 0:
+                break; // switch (mod) {
+            case 2:
+                hash = Base32.HASH_BASE32_MOD2;
+                // char 1
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = data.charAt(poiData++);
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 4:
+                hash = Base32.HASH_BASE32_MOD4;
+                // char 1
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = data.charAt(poiData++);
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 5:
+                hash = Base32.HASH_BASE32_MOD5;
+                // char 1
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x0F) << 4;
+                // char 5
+                c = data.charAt(poiData++);
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 1;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 7:
+                hash = Base32.HASH_BASE32_MOD7;
+                // char 1
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x0F) << 4;
+                // char 5
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 1;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x01) << 7;
+                // char 6
+                c = data.charAt(poiData++);
+                index = hashAll.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 2;
+                // char 7
+                c = data.charAt(poiData++);
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 3;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            default:
                 return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = data.charAt(poiData++);
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 4:
-            hash = Base32.HASH_BASE32_MOD4;
-            // char 1
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = data.charAt(poiData++);
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 5:
-            hash = Base32.HASH_BASE32_MOD5;
-            // char 1
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x0F) << 4;
-            // char 5
-            c = data.charAt(poiData++);
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 1;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 7:
-            hash = Base32.HASH_BASE32_MOD7;
-            // char 1
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x0F) << 4;
-            // char 5
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 1;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x01) << 7;
-            // char 6
-            c = data.charAt(poiData++);
-            index = hashAll.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 2;
-            // char 7
-            c = data.charAt(poiData++);
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 3;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        default:
-            return 0;
         }
         return poiBuff - offsetBuff;
     }
@@ -1507,22 +1519,22 @@ public final class Base32 {
         }
         int lengthConvert = length_data / 8 * 5;
         switch (length_data % 8) {
-        case 0:
-            break; // switch (length % 8) {
-        case 2:
-            lengthConvert += 1;
-            break; // switch (length % 8) {
-        case 4:
-            lengthConvert += 2;
-            break; // switch (length % 8) {
-        case 5:
-            lengthConvert += 3;
-            break; // switch (length % 8) {
-        case 7:
-            lengthConvert += 4;
-            break; // switch (length % 8) {
-        default:
-            return null;
+            case 0:
+                break; // switch (length % 8) {
+            case 2:
+                lengthConvert += 1;
+                break; // switch (length % 8) {
+            case 4:
+                lengthConvert += 2;
+                break; // switch (length % 8) {
+            case 5:
+                lengthConvert += 3;
+                break; // switch (length % 8) {
+            case 7:
+                lengthConvert += 4;
+                break; // switch (length % 8) {
+            default:
+                return null;
         }
         byte[] buff = new byte[lengthConvert];
         if (0 == Base32.decodeBase32ToBytes(data, offset_data, length_data, buff, 0)) {
@@ -1626,168 +1638,168 @@ public final class Base32 {
             buff[poiBuff++] = (byte) value;
         }
         switch (mod) {
-        case 0:
-            break; // switch (mod) {
-        case 2:
-            hash = Base32.HASH_BASE32_MOD2;
-            // char 1
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
+            case 0:
+                break; // switch (mod) {
+            case 2:
+                hash = Base32.HASH_BASE32_MOD2;
+                // char 1
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 4:
+                hash = Base32.HASH_BASE32_MOD4;
+                // char 1
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 5:
+                hash = Base32.HASH_BASE32_MOD5;
+                // char 1
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x0F) << 4;
+                // char 5
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 1;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            case 7:
+                hash = Base32.HASH_BASE32_MOD7;
+                // char 1
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value = index.intValue();
+                value <<= 3;
+                // char 2
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 2;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x03) << 6;
+                // char 3
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 1;
+                // char 4
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 4;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x0F) << 4;
+                // char 5
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 1;
+                buff[poiBuff++] = (byte) value;
+                value = (index.intValue() & 0x01) << 7;
+                // char 6
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() << 2;
+                // char 7
+                c = 0xFF & data[poiData++];
+                index = hash.get(c);
+                if (null == index) {
+                    return 0;
+                }
+                value |= index.intValue() >> 3;
+                buff[poiBuff++] = (byte) value;
+                break; // switch (mod) {
+            default:
                 return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 4:
-            hash = Base32.HASH_BASE32_MOD4;
-            // char 1
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 5:
-            hash = Base32.HASH_BASE32_MOD5;
-            // char 1
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x0F) << 4;
-            // char 5
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 1;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        case 7:
-            hash = Base32.HASH_BASE32_MOD7;
-            // char 1
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value = index.intValue();
-            value <<= 3;
-            // char 2
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 2;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x03) << 6;
-            // char 3
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 1;
-            // char 4
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 4;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x0F) << 4;
-            // char 5
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 1;
-            buff[poiBuff++] = (byte) value;
-            value = (index.intValue() & 0x01) << 7;
-            // char 6
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() << 2;
-            // char 7
-            c = 0xFF & data[poiData++];
-            index = hash.get(c);
-            if (null == index) {
-                return 0;
-            }
-            value |= index.intValue() >> 3;
-            buff[poiBuff++] = (byte) value;
-            break; // switch (mod) {
-        default:
-            return 0;
         }
         return poiBuff - offsetBuff;
     }

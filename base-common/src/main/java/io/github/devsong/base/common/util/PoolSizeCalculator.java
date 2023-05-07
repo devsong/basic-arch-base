@@ -74,8 +74,9 @@ public abstract class PoolSizeCalculator {
         BigDecimal waitTime = new BigDecimal(wait);
         BigDecimal computeTime = new BigDecimal(cpu);
         BigDecimal numberOfCPU = new BigDecimal(Runtime.getRuntime().availableProcessors());
-        BigDecimal optimalthreadcount = numberOfCPU.multiply(targetUtilization).multiply(
-                BigDecimal.ONE.add(waitTime.divide(computeTime, RoundingMode.HALF_UP)));
+        BigDecimal optimalthreadcount = numberOfCPU
+                .multiply(targetUtilization)
+                .multiply(BigDecimal.ONE.add(waitTime.divide(computeTime, RoundingMode.HALF_UP)));
         System.out.println("Number of CPU: " + numberOfCPU);
         System.out.println("Target utilization: " + targetUtilization);
         System.out.println("Elapsed time (nanos): " + (TESTTIME * 1000000));
@@ -102,12 +103,14 @@ public abstract class PoolSizeCalculator {
             expired = false;
             start = System.currentTimeMillis();
             Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    expired = true;
-                }
-            }, TESTTIME);
+            timer.schedule(
+                    new TimerTask() {
+                        @Override
+                        public void run() {
+                            expired = true;
+                        }
+                    },
+                    TESTTIME);
             while (!expired) {
                 task.run();
             }
@@ -176,5 +179,4 @@ public abstract class PoolSizeCalculator {
      * @return current cpu time of current thread
      */
     protected abstract long getCurrentThreadCPUTime();
-
 }

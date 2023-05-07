@@ -1,9 +1,8 @@
 package io.github.devsong.base.common.util;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class NumberUtil extends NumberUtils {
 
@@ -15,7 +14,10 @@ public class NumberUtil extends NumberUtils {
      * @return
      */
     public static String fen2yuan(long val, int scale) {
-        return new BigDecimal(val).divide(new BigDecimal(100)).setScale(scale, RoundingMode.HALF_UP).toString();
+        return new BigDecimal(val)
+                .divide(new BigDecimal(100))
+                .setScale(scale, RoundingMode.HALF_UP)
+                .toString();
     }
 
     /**
@@ -29,6 +31,9 @@ public class NumberUtil extends NumberUtils {
         if (val == null) {
             throw new NullPointerException("val is null");
         }
-        return new BigDecimal(val).multiply(new BigDecimal(100)).setScale(scale, RoundingMode.HALF_UP).longValue();
+        return new BigDecimal(val)
+                .multiply(new BigDecimal(100))
+                .setScale(scale, RoundingMode.HALF_UP)
+                .longValue();
     }
 }

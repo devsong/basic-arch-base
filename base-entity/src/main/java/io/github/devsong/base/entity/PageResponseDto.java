@@ -1,12 +1,11 @@
 package io.github.devsong.base.entity;
 
+import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -32,7 +31,6 @@ public class PageResponseDto<T> implements Serializable {
      * 分页数据对象
      */
     protected PageResponse page;
-
 
     ///////////////////////////////////////////////////////
     // 以下两个参数为辅助参数,用于返回接口耗时以及接口执行机器IP
@@ -82,7 +80,11 @@ public class PageResponseDto<T> implements Serializable {
      * @return
      */
     public static <T> PageResponseDto<T> success(List<T> data, int page, int pageSize, int total) {
-        PageResponse pageResponse = PageResponse.builder().page(page).pageSize(pageSize).total(total).build();
+        PageResponse pageResponse = PageResponse.builder()
+                .page(page)
+                .pageSize(pageSize)
+                .total(total)
+                .build();
         return success(data, pageResponse);
     }
 

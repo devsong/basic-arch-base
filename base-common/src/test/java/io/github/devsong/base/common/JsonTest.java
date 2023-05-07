@@ -1,17 +1,16 @@
 package io.github.devsong.base.common;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Lists;
 import com.vdurmont.emoji.EmojiParser;
 import io.github.devsong.base.common.util.JsonUtil;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class JsonTest {
 
@@ -38,8 +37,7 @@ class JsonTest {
     @Test
     void testParseList2() {
         List<FooJson> list = Lists.newArrayList(new FooJson(1, "test"), new FooJson(2, "test2"));
-        list = JsonUtil.parseObject(JsonUtil.toJSONString(list), new TypeReference<List<FooJson>>() {
-        });
+        list = JsonUtil.parseObject(JsonUtil.toJSONString(list), new TypeReference<List<FooJson>>() {});
         assertThat(list.size()).isEqualTo(2);
     }
 
@@ -57,7 +55,6 @@ class JsonTest {
         }
         return EmojiParser.removeAllEmojis(nick_name);
     }
-
 }
 
 @Data

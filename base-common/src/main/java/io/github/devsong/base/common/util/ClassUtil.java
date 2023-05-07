@@ -1,7 +1,5 @@
 package io.github.devsong.base.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
@@ -14,6 +12,7 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Stream;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ClassUtil {
@@ -37,7 +36,8 @@ public class ClassUtil {
         List<Class<?>> classList = new ArrayList<Class<?>>();
         try {
             // 获取当前线程的类装载器中相应包名对应的资源
-            Enumeration<URL> iterator = Thread.currentThread().getContextClassLoader()
+            Enumeration<URL> iterator = Thread.currentThread()
+                    .getContextClassLoader()
                     .getResources(packageName.replace(DOT_CHAR, File.separatorChar));
             while (iterator.hasMoreElements()) {
                 URL url = iterator.nextElement();
@@ -133,7 +133,9 @@ public class ClassUtil {
                 if (beginIndex == -1) {
                     return Collections.emptyList();
                 }
-                className = lastDotIndex == -1 ? className.substring(beginIndex) : className.substring(beginIndex, lastDotIndex);
+                className = lastDotIndex == -1
+                        ? className.substring(beginIndex)
+                        : className.substring(beginIndex, lastDotIndex);
                 classList.add(Class.forName(className));
             } catch (IOException e) {
                 e.printStackTrace();

@@ -1,7 +1,5 @@
 package io.github.devsong.base.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import lombok.extern.slf4j.Slf4j;
 
 public class SimplePoolSizeCalculator extends PoolSizeCalculator {
 
@@ -33,9 +32,7 @@ public class SimplePoolSizeCalculator extends PoolSizeCalculator {
         PoolSizeCalculator poolSizeCalculator = new SimplePoolSizeCalculator();
         poolSizeCalculator.calculateBoundaries(new BigDecimal("0.4"), new BigDecimal(100000));
     }
-
 }
-
 
 /**
  * 自定义的异步IO任务
@@ -75,5 +72,4 @@ class AsyncIOTask implements Runnable {
             connection.disconnect();
         }
     }
-
 }
