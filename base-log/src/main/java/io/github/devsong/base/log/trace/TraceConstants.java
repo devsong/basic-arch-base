@@ -20,6 +20,4 @@ public class TraceConstants {
     public static final String TRACE_EXTEND = "traceExtend";
 
     public static final String SPAN_SEPARATOR = ".";
-
-
 }

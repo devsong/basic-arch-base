@@ -2,13 +2,12 @@ package io.github.devsong.base.log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.devsong.base.log.trace.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
 import org.springframework.web.servlet.HandlerInterceptor;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author zhisong.guan
@@ -18,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LogInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         initTraceContextAndMdc(request);
         return true;
     }
@@ -48,7 +48,7 @@ public class LogInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        //调用结束后删除
+        // 调用结束后删除
         try {
             TraceContext.remove();
             MDC.remove(TraceConstants.TRACE_ID);

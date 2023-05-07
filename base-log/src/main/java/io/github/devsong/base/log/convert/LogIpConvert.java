@@ -2,8 +2,6 @@ package io.github.devsong.base.log.convert;
 
 import ch.qos.logback.classic.pattern.ClassicConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import lombok.extern.slf4j.Slf4j;
-
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -11,6 +9,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author zhisong.guan
@@ -25,7 +24,7 @@ public class LogIpConvert extends ClassicConverter {
         return IP;
     }
 
-    private synchronized static String getLocalIp(String interfaceName) {
+    private static synchronized String getLocalIp(String interfaceName) {
         String ip;
         interfaceName = interfaceName.trim();
         try {

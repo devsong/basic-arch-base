@@ -1,10 +1,9 @@
 package io.github.devsong.base.log.trace;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.security.SecureRandom;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author zhisong.guan
@@ -12,11 +11,11 @@ import java.util.concurrent.atomic.AtomicLong;
 public class TraceIdGenerator {
 
     private static final char[] CHARS = {
-            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
     };
 
     private static final SecureRandom RND = new SecureRandom();
@@ -48,10 +47,7 @@ public class TraceIdGenerator {
      * @return 19位字符串
      */
     private static String getTraceIdByCurrentTime(String prefix) {
-        return StringUtils.defaultString(prefix)
-                + Long.toHexString(System.currentTimeMillis())
-                + getInc()
-                + random(4);
+        return StringUtils.defaultString(prefix) + Long.toHexString(System.currentTimeMillis()) + getInc() + random(4);
     }
 
     /**
@@ -95,5 +91,4 @@ public class TraceIdGenerator {
     public static String getSpanId() {
         return String.valueOf(SPANID_INC.getAndIncrement());
     }
-
 }

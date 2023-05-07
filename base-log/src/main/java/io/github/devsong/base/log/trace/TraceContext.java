@@ -1,11 +1,10 @@
 package io.github.devsong.base.log.trace;
 
-import com.alibaba.ttl.TransmittableThreadLocal;
-import org.slf4j.MDC;
-
 import static io.github.devsong.base.log.trace.TraceConstants.SPAN_ID;
 import static io.github.devsong.base.log.trace.TraceConstants.TRACE_ID;
 
+import com.alibaba.ttl.TransmittableThreadLocal;
+import org.slf4j.MDC;
 
 /**
  * @author zhisong.guan
@@ -32,5 +31,4 @@ public class TraceContext {
         MDC.put(TRACE_ID, tracer.getTraceId());
         MDC.put(SPAN_ID, tracer.getSpanId());
     }
-
 }

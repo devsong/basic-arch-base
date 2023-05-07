@@ -1,6 +1,5 @@
 package io.github.devsong.base.log.trace;
 
-
 import lombok.Data;
 
 /**
@@ -15,8 +14,7 @@ public class Tracer {
 
     private TraceExtend traceExtend;
 
-    public Tracer() {
-    }
+    public Tracer() {}
 
     public Tracer(String traceId) {
         this.traceId = traceId;
