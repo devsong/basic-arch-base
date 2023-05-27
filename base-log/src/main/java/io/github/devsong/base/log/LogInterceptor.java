@@ -2,10 +2,8 @@ package io.github.devsong.base.log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.devsong.base.log.trace.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
