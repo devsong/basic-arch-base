@@ -80,7 +80,7 @@
                         "log_level":"%level",
                         "traceId":"%X{traceId}",
                         "spanId":"%X{spanId}",
-                        "message":"%msg",
+                        "msg":"%msg",
                         "stack_trace": "%exception",
                         "timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss.SSS}"
                         }
@@ -123,7 +123,7 @@
                         "log_level":"%level",
                         "traceId":"%X{traceId}",
                         "spanId":"%X{spanId}",
-                        "message":"%msg",
+                        "msg":"%msg",
                         "stack_trace": "%exception",
                         "timestamp":"%d{yyyy-MM-dd'T'HH:mm:ss.SSS}"
                         }
