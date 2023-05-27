@@ -3,6 +3,7 @@ package io.github.devsong.base.common.util;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -473,7 +474,11 @@ public class HttpUtil {
             if (StringUtils.isBlank(v)) {
                 continue;
             }
-            v = URLEncoder.encode(v, StandardCharsets.UTF_8);
+            try {
+                v = URLEncoder.encode(v, UTF_8);
+            } catch (UnsupportedEncodingException e) {
+                continue;
+            }
             if (StringUtils.isNotBlank(v)) {
                 kvPairs.add(k + URL_PARAM_KV_SEAPRATOR + v);
             }
@@ -498,7 +503,11 @@ public class HttpUtil {
             if (StringUtils.isBlank(v)) {
                 continue;
             }
-            v = URLEncoder.encode(v, StandardCharsets.UTF_8);
+            try {
+                v = URLEncoder.encode(v, UTF_8);
+            } catch (UnsupportedEncodingException e) {
+                continue;
+            }
             if (StringUtils.isNotBlank(v)) {
                 kvList.add(k + URL_PARAM_KV_SEAPRATOR + v);
             }
@@ -519,7 +528,11 @@ public class HttpUtil {
                 continue;
             }
             String value = "";
-            value = URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8);
+            try {
+                value = URLEncoder.encode(entry.getValue().toString(), UTF_8);
+            } catch (UnsupportedEncodingException e) {
+                continue;
+            }
             if (StringUtils.isNotBlank(value)) {
                 pairs.add(new BasicNameValuePair(entry.getKey(), value));
             }

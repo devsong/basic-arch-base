@@ -55,7 +55,10 @@ public class ResourceParseUtil {
         ClassLoader clsLoader = Thread.currentThread().getContextClassLoader();
         InputStream in = clsLoader.getResourceAsStream(path);
         if (in == null) {
-            log.error("error load resources from path {},loader {}", path, clsLoader.getName());
+            log.error(
+                    "error load resources from path {},loader {}",
+                    path,
+                    clsLoader.getClass().getName());
             throw new IllegalArgumentException(String.format("can not found resource path %s", path));
         }
         return in;
