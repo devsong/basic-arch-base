@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class LogIpConvert extends ClassicConverter {
-    private static final String IP = getLocalIp("en0");
+    private static final String IP = getLocalIp("eth0");
 
     @Override
     public String convert(ILoggingEvent event) {
