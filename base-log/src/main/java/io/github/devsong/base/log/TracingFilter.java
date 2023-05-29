@@ -1,7 +1,5 @@
 package io.github.devsong.base.log;
 
-import static io.github.devsong.base.log.trace.TraceConstants.URI;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.devsong.base.log.trace.*;
 import java.io.IOException;
@@ -31,6 +29,7 @@ public class TracingFilter implements Filter {
             TraceContext.remove();
             MDC.remove(TraceConstants.TRACE_ID);
             MDC.remove(TraceConstants.SPAN_ID);
+            MDC.remove(TraceConstants.URI);
         }
     }
 
@@ -62,6 +61,6 @@ public class TracingFilter implements Filter {
         TraceContext.set(tracer);
         MDC.put(TraceConstants.TRACE_ID, traceId);
         MDC.put(TraceConstants.SPAN_ID, spanId);
-        MDC.put(URI, uri);
+        MDC.put(TraceConstants.URI, uri);
     }
 }
