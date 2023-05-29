@@ -6,6 +6,7 @@
     <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{20}  %X{traceId} %X{spanId} - %msg%n"/>
     <!-- 服务器上日志保留最长天数 -->
     <property name="log.maxHistory" value="7"/>
+    <contextListener class="com.ofpay.logback.TtlMdcListener"/>
     <!-- 控制台输出 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

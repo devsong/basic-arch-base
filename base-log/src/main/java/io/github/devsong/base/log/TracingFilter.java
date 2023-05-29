@@ -2,27 +2,39 @@ package io.github.devsong.base.log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.devsong.base.log.trace.*;
+import java.io.IOException;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
-import org.springframework.web.servlet.HandlerInterceptor;
 
 /**
- * 基于spring mvc handler interceptor 实现
- *
- * @author zhisong.guan
- * @date 2022/10/15 10:52
+ * 基于servlet filter实现
+ * date:  2023/5/29
+ * author:guanzhisong
  */
-@Slf4j
-public class LogInterceptor implements HandlerInterceptor {
+public class TracingFilter implements Filter {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
+    }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-            throws Exception {
-        initTraceContextAndMdc(request);
-        return true;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        try {
+            initTraceContextAndMdc((HttpServletRequest) request);
+            chain.doFilter(request, response);
+        } finally {
+            TraceContext.remove();
+            MDC.remove(TraceConstants.TRACE_ID);
+            MDC.remove(TraceConstants.SPAN_ID);
+        }
+    }
+
+    @Override
+    public void destroy() {
+        Filter.super.destroy();
     }
 
     private static void initTraceContextAndMdc(HttpServletRequest request) throws JsonProcessingException {
@@ -47,18 +59,5 @@ public class LogInterceptor implements HandlerInterceptor {
         TraceContext.set(tracer);
         MDC.put(TraceConstants.TRACE_ID, traceId);
         MDC.put(TraceConstants.SPAN_ID, spanId);
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
-            throws Exception {
-        // 调用结束后删除
-        try {
-            TraceContext.remove();
-            MDC.remove(TraceConstants.TRACE_ID);
-            MDC.remove(TraceConstants.SPAN_ID);
-        } catch (Exception e) {
-            log.error("error remove mdc context");
-        }
     }
 }
