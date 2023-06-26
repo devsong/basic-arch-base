@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.cglib.beans.BeanMap;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -91,7 +90,7 @@ public abstract class PerfBaseAspect extends SysAbstractAspect {
                 if (returnValue instanceof Map) {
                     m = (Map<String, Object>) returnValue;
                 } else {
-                    m = (Map<String, Object>) BeanMap.create(returnValue);
+                    m = JsonUtil.bean2Map(returnValue);
                 }
                 if (m.containsKey(FIELD_CODE)) {
                     code = Integer.parseInt(String.valueOf(m.get(FIELD_CODE).toString()));

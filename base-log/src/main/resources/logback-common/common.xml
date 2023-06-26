@@ -152,7 +152,7 @@
         <appender-ref ref="param_file"/>
     </logger>
 
-    <springProfile name="local,dev,auto-test">
+    <springProfile name="local,dev,autotest">
         <root level="info">
             <appender-ref ref="console"/>
         </root>
