@@ -11,10 +11,15 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import java.util.List;
+import java.util.Map;
 
 public class JsonUtil {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    private static final TypeReference<Map<String, Object>> MAP_REF = new TypeReference<Map<String, Object>>() {
+    };
 
     static {
         // 忽略未识别的属性
@@ -36,6 +41,7 @@ public class JsonUtil {
 
     /**
      * 对象到json
+     *
      * @param object
      * @return
      */
@@ -50,6 +56,7 @@ public class JsonUtil {
 
     /**
      * json到对象
+     *
      * @param <T>
      * @param str
      * @param clazz
@@ -67,6 +74,7 @@ public class JsonUtil {
 
     /**
      * json到对象
+     *
      * @param str
      * @param ref
      * @param <T>
@@ -84,6 +92,7 @@ public class JsonUtil {
 
     /**
      * 序列化列表
+     *
      * @param <T>
      * @param json
      * @param clazz
@@ -98,5 +107,9 @@ public class JsonUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Map<String, Object> bean2Map(Object obj) {
+        return OBJECT_MAPPER.convertValue(obj, MAP_REF);
     }
 }

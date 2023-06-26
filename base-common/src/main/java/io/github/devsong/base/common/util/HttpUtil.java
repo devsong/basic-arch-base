@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.cglib.beans.BeanMap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -547,8 +546,7 @@ public class HttpUtil {
         if (object == null) {
             return null;
         }
-        @SuppressWarnings("unchecked")
-        Map<String, Object> map = BeanMap.create(object);
+        Map<String, Object> map = JsonUtil.bean2Map(object);
         return convertMap2Pair(map);
     }
 

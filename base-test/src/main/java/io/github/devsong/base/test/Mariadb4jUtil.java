@@ -33,6 +33,8 @@ public class Mariadb4jUtil {
         config.addArg("--collation-server=utf8mb4_general_ci");
         config.addArg("--user=root");
         config.addArg("--max-connections=512");
+        config.addArg("--innodb_file_per_table=ON");
+        config.addArg("--innodb_file_format=DYNAMIC");
         config.setBaseDir(SystemUtils.JAVA_IO_TMPDIR + "/MariaDB4j/base");
         config.setDataDir(SystemUtils.JAVA_IO_TMPDIR + "/MariaDB4j/data");
         config.setDeletingTemporaryBaseAndDataDirsOnShutdown(true);
