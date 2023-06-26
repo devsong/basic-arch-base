@@ -13,9 +13,9 @@ public interface GlobalConstant {
     String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     /**
-     * 集成测试专用的profile
+     * 自动化(集成)测试专用的profile
      */
-    String PROFILE_TEST_ENV = "test";
+    String PROFILE_TEST_ENV = "autotest";
 
     /**
      * 取反

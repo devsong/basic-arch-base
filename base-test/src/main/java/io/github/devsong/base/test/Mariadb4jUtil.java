@@ -5,9 +5,12 @@ import ch.vorburger.mariadb4j.DBConfigurationBuilder;
 import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
 import com.zaxxer.hikari.HikariDataSource;
 import io.github.devsong.base.common.OSInfo;
+
 import java.util.Random;
 import javax.sql.DataSource;
+
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.flywaydb.core.Flyway;
 
@@ -23,7 +26,7 @@ public class Mariadb4jUtil {
     public static final int START_PORT = 50000;
     public static final int RANDOM_PORT_RANGE = 1000;
 
-    public static MariaDB4jSpringService mariaDB4jSpringService() {
+    public static MariaDB4jSpringService mariaDB4jSpringService(String baseDir) {
         MariaDB4jSpringService mariaDB4jSpringService = new MariaDB4jSpringService();
         int port = new Random().nextInt(RANDOM_PORT_RANGE) + START_PORT;
         mariaDB4jSpringService.setDefaultPort(port);
@@ -42,7 +45,11 @@ public class Mariadb4jUtil {
         if (OSInfo.isMacOSX() || OSInfo.isMacOS()) {
             // MacOS/MacOSX m1芯片可以选择使用本机的mariadb启动
             config.setUnpackingFromClasspath(false);
-            config.setBaseDir("/opt/homebrew");
+            if (StringUtils.isNotBlank(baseDir)) {
+                config.setBaseDir(baseDir);
+            } else {
+                config.setBaseDir("/opt/homebrew");
+            }
         }
         config.setLibDir(System.getProperty("java.io.tmpdir") + "/MariaDB4j/no-libs");
 
