@@ -31,8 +31,4 @@
         <connection>scm:git:https://github.com/devsong/basic-arch-base.git</connection>
         <developerConnection>scm:git:git@github.com:devsong/basic-arch-base.git</developerConnection>
     </scm>
-
-    <build>
-        <finalName>${project.artifactId}</finalName>
-    </build>
 </project>
