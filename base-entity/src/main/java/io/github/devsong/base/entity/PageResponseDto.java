@@ -1,11 +1,12 @@
 package io.github.devsong.base.entity;
 
-import java.io.Serializable;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,14 +24,11 @@ public class PageResponseDto<T> implements Serializable {
      * 返回描述信息
      */
     protected String msg;
+
     /**
      * 返回对象实体
      */
-    protected List<T> data;
-    /**
-     * 分页数据对象
-     */
-    protected PageResponse page;
+    protected PageData<T> data;
 
     ///////////////////////////////////////////////////////
     // 以下两个参数为辅助参数,用于返回接口耗时以及接口执行机器IP
@@ -53,8 +51,8 @@ public class PageResponseDto<T> implements Serializable {
         PageResponseDto<T> pageResponseDto = new PageResponseDto<>();
         pageResponseDto.setCode(code);
         pageResponseDto.setMsg(msg);
-        pageResponseDto.setData(data);
-        pageResponseDto.setPage(page);
+        PageData<T> pageData = PageData.<T>builder().list(data).page(page).build();
+        pageResponseDto.setData(pageData);
         return pageResponseDto;
     }
 
@@ -67,7 +65,7 @@ public class PageResponseDto<T> implements Serializable {
      * @return
      */
     public static <T> PageResponseDto<T> success(List<T> data, int page, int pageSize) {
-        return success(data, page, pageSize, 0);
+        return success(data, page, pageSize, data == null ? 0 : data.size());
     }
 
     /**
@@ -102,7 +100,6 @@ public class PageResponseDto<T> implements Serializable {
     /**
      * 业务异常结果
      *
-     * @param errorCode
      * @param errorMsg
      * @return
      */
@@ -113,7 +110,6 @@ public class PageResponseDto<T> implements Serializable {
     /**
      * 系统异常结果
      *
-     * @param errorCode
      * @param errorMsg
      * @return
      */
@@ -131,6 +127,21 @@ public class PageResponseDto<T> implements Serializable {
     public static <T> PageResponseDto<T> error(int errorCode, String errorMsg) {
         PageResponse pageResponse = PageResponse.builder().page(1).pageSize(1).build();
         return build(errorCode, errorMsg, null, pageResponse);
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class PageData<T> {
+        /**
+         * 数据列表
+         */
+        private List<T> list;
+        /**
+         * 分页对象信息
+         */
+        private PageResponse page;
     }
 
     @Data
