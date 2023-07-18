@@ -79,7 +79,7 @@ public class PageResponseDto<T> implements Serializable {
      */
     public static <T> PageResponseDto<T> success(List<T> data, int page, int pageSize, int total) {
         PageResponse pageResponse = PageResponse.builder()
-                .page(page)
+                .pageNum(page)
                 .pageSize(pageSize)
                 .total(total)
                 .build();
@@ -125,7 +125,7 @@ public class PageResponseDto<T> implements Serializable {
      * @return
      */
     public static <T> PageResponseDto<T> error(int errorCode, String errorMsg) {
-        PageResponse pageResponse = PageResponse.builder().page(1).pageSize(1).build();
+        PageResponse pageResponse = PageResponse.builder().pageNum(1).pageSize(1).build();
         return build(errorCode, errorMsg, null, pageResponse);
     }
 
@@ -155,7 +155,7 @@ public class PageResponseDto<T> implements Serializable {
         private static final long serialVersionUID = 1L;
         // 空的page对象
         private static final PageResponse NULL_PAGE = new PageResponse(0, 1, 0);
-        protected Integer page;
+        protected Integer pageNum;
         protected Integer pageSize;
         protected Integer total;
 
