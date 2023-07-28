@@ -1,5 +1,9 @@
 package io.github.devsong.base.common;
 
+import com.google.common.collect.Lists;
+
+import java.util.List;
+
 /**
  * 返回状态码
  *
@@ -10,6 +14,8 @@ public interface HttpStatus {
      * 操作成功
      */
     int SUCCESS = 200;
+
+    List<String> SUCCESS_LIST = Lists.newArrayList("ok", "OK", "SUCCESS", "success");
 
     /**
      * 对象创建成功

@@ -7,16 +7,17 @@ import io.github.devsong.base.common.util.JsonUtil;
 import io.github.devsong.base.entity.SysPerfLogDto;
 import io.github.devsong.base.entity.annotation.PerfLog;
 import io.github.devsong.base.log.trace.TraceContext;
-import java.lang.reflect.Method;
-import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.AnnotationUtils;
+
+import java.lang.reflect.Method;
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 记录接口请求中的参数,类似于nginx/httpd中的access log功能
@@ -93,10 +94,18 @@ public abstract class PerfBaseAspect extends SysAbstractAspect {
                     m = JsonUtil.bean2Map(returnValue);
                 }
                 if (m.containsKey(FIELD_CODE)) {
-                    code = Integer.parseInt(String.valueOf(m.get(FIELD_CODE).toString()));
-                    if (Objects.equals(code, HttpStatus.SUCCESS)) {
-                        // code转换
-                        code = 0;
+                    try {
+                        code = Integer.parseInt(String.valueOf(m.get(FIELD_CODE).toString()));
+                        if (Objects.equals(code, HttpStatus.SUCCESS)) {
+                            // code转换
+                            code = 0;
+                        }
+                    } catch (NumberFormatException e) {
+                        if (HttpStatus.SUCCESS_LIST.contains(m.get(FIELD_CODE))) {
+                            code = 0;
+                        } else {
+                            code = 1;
+                        }
                     }
                 }
                 if (m.containsKey(FIELD_MSG)) {
