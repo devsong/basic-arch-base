@@ -101,7 +101,7 @@ public abstract class PerfBaseAspect extends SysAbstractAspect {
                             code = 0;
                         }
                     } catch (NumberFormatException e) {
-                        if (HttpStatus.SUCCESS_LIST.contains(m.get(FIELD_CODE))) {
+                        if (HttpStatus.SUCCESS_LIST.contains(String.valueOf(m.get(FIELD_CODE)))) {
                             code = 0;
                         } else {
                             code = 1;
