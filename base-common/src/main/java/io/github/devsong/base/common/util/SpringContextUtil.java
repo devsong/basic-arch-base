@@ -1,22 +1,36 @@
 package io.github.devsong.base.common.util;
 
-import java.util.Map;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
+import java.util.Map;
 
 /**
  * spring工具类 方便在非spring管理环境中获取bean
  *
  * @author guanzhisong
  */
-public final class SpringContextUtil implements BeanFactoryPostProcessor {
+public final class SpringContextUtil implements ApplicationContextAware, BeanFactoryPostProcessor {
+    /**
+     * Spring应用上下文环境
+     */
+    private static ApplicationContext applicationContext;
+
     /**
      * Spring应用上下文环境
      */
     private static ConfigurableListableBeanFactory beanFactory;
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        SpringContextUtil.applicationContext = applicationContext;
+    }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -32,11 +46,11 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getBean(String name) throws BeansException {
-        return (T) beanFactory.getBean(name);
+        return (T) applicationContext.getBean(name);
     }
 
     public static <T> Map<String, T> getBeansOfType(Class<T> cls) throws BeansException {
-        return beanFactory.getBeansOfType(cls);
+        return applicationContext.getBeansOfType(cls);
     }
 
     /**
@@ -47,7 +61,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      * @throws BeansException
      */
     public static <T> T getBean(Class<T> clz) throws BeansException {
-        T result = beanFactory.getBean(clz);
+        T result = applicationContext.getBean(clz);
         return result;
     }
 
@@ -58,7 +72,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      * @return boolean
      */
     public static boolean containsBean(String name) {
-        return beanFactory.containsBean(name);
+        return applicationContext.containsBean(name);
     }
 
     /**
@@ -70,7 +84,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      * @throws NoSuchBeanDefinitionException
      */
     public static boolean isSingleton(String name) throws NoSuchBeanDefinitionException {
-        return beanFactory.isSingleton(name);
+        return applicationContext.isSingleton(name);
     }
 
     /**
@@ -79,7 +93,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      * @throws NoSuchBeanDefinitionException
      */
     public static Class<?> getType(String name) throws NoSuchBeanDefinitionException {
-        return beanFactory.getType(name);
+        return applicationContext.getType(name);
     }
 
     /**
@@ -90,7 +104,7 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      * @throws NoSuchBeanDefinitionException
      */
     public static String[] getAliases(String name) throws NoSuchBeanDefinitionException {
-        return beanFactory.getAliases(name);
+        return applicationContext.getAliases(name);
     }
 
     /**
@@ -112,5 +126,13 @@ public final class SpringContextUtil implements BeanFactoryPostProcessor {
      */
     public static void registerBean(String beanName, Object bean) {
         beanFactory.registerSingleton(beanName, bean);
+    }
+
+    public static BeanFactory getContext() {
+        return applicationContext;
+    }
+
+    public static String getProperty(String key) {
+        return applicationContext.getEnvironment().getProperty(key);
     }
 }
