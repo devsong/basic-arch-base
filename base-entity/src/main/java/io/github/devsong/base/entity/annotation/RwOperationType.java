@@ -1,6 +1,7 @@
 package io.github.devsong.base.entity.annotation;
 
 import io.github.devsong.base.entity.enums.RwOperationEnum;
+
 import java.lang.annotation.*;
 
 /**

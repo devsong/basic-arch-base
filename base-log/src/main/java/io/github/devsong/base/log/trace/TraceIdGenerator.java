@@ -1,9 +1,10 @@
 package io.github.devsong.base.log.trace;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.security.SecureRandom;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author zhisong.guan

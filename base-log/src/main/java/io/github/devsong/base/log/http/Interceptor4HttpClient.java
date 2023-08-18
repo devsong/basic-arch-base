@@ -1,17 +1,18 @@
 package io.github.devsong.base.log.http;
 
-import static com.google.common.collect.Maps.newHashMap;
-import static io.github.devsong.base.log.trace.TraceConstants.*;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpException;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.protocol.HttpContext;
 import org.slf4j.MDC;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+
+import static com.google.common.collect.Maps.newHashMap;
+import static io.github.devsong.base.log.trace.TraceConstants.*;
 
 /**
  * @author zhisong.guan

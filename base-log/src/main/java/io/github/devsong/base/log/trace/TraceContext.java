@@ -1,10 +1,10 @@
 package io.github.devsong.base.log.trace;
 
-import static io.github.devsong.base.log.trace.TraceConstants.SPAN_ID;
-import static io.github.devsong.base.log.trace.TraceConstants.TRACE_ID;
-
 import com.alibaba.ttl.TransmittableThreadLocal;
 import org.slf4j.MDC;
+
+import static io.github.devsong.base.log.trace.TraceConstants.SPAN_ID;
+import static io.github.devsong.base.log.trace.TraceConstants.TRACE_ID;
 
 /**
  * @author zhisong.guan
