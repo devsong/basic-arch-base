@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import lombok.Getter;
+import lombok.SneakyThrows;
 
 import java.util.List;
 import java.util.Map;
 
 public class JsonUtil {
+    @Getter
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private static final TypeReference<Map<String, Object>> MAP_REF = new TypeReference<Map<String, Object>>() {
+    private static final TypeReference<Map<String, Object>> MAP_REF = new TypeReference<>() {
     };
 
     static {
@@ -36,7 +36,7 @@ public class JsonUtil {
         OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         OBJECT_MAPPER.registerModule(new JavaTimeModule());
         OBJECT_MAPPER.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-        // objectMapper.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+//         OBJECT_MAPPER.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
     }
 
     /**
@@ -45,13 +45,9 @@ public class JsonUtil {
      * @param object
      * @return
      */
+    @SneakyThrows
     public static String toJSONString(Object object) {
-        try {
-            return OBJECT_MAPPER.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return null;
-        }
+        return OBJECT_MAPPER.writeValueAsString(object);
     }
 
     /**
@@ -62,14 +58,9 @@ public class JsonUtil {
      * @param clazz
      * @return
      */
+    @SneakyThrows
     public static <T> T parseObject(String str, Class<T> clazz) {
-        try {
-            T readValue = OBJECT_MAPPER.readValue(str, clazz);
-            return readValue;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return OBJECT_MAPPER.readValue(str, clazz);
     }
 
     /**
@@ -80,14 +71,9 @@ public class JsonUtil {
      * @param <T>
      * @return
      */
+    @SneakyThrows
     public static <T> T parseObject(String str, TypeReference<T> ref) {
-        try {
-            T readValue = OBJECT_MAPPER.readValue(str, ref);
-            return readValue;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return OBJECT_MAPPER.readValue(str, ref);
     }
 
     /**
@@ -98,15 +84,15 @@ public class JsonUtil {
      * @param clazz
      * @return
      */
+    @SneakyThrows
     public static <T> List<T> parseList(String json, Class<T> clazz) {
         JavaType javaType = OBJECT_MAPPER.getTypeFactory().constructParametricType(List.class, clazz);
-        try {
-            List<T> readValue = OBJECT_MAPPER.readValue(json, javaType);
-            return readValue;
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return OBJECT_MAPPER.readValue(json, javaType);
+    }
+
+    @SneakyThrows
+    public static JsonNode parseJson(String json) {
+        return OBJECT_MAPPER.readTree(json);
     }
 
     public static Map<String, Object> bean2Map(Object obj) {
