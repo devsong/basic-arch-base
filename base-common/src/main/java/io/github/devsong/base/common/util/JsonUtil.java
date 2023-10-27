@@ -7,18 +7,16 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.Getter;
-import lombok.SneakyThrows;
-
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import lombok.SneakyThrows;
 
 public class JsonUtil {
     @Getter
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-    private static final TypeReference<Map<String, Object>> MAP_REF = new TypeReference<>() {
-    };
+    private static final TypeReference<Map<String, Object>> MAP_REF = new TypeReference<>() {};
 
     static {
         // 忽略未识别的属性
@@ -35,7 +33,7 @@ public class JsonUtil {
         OBJECT_MAPPER.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         OBJECT_MAPPER.registerModule(new JavaTimeModule());
         OBJECT_MAPPER.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
-//         OBJECT_MAPPER.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
+        //         OBJECT_MAPPER.activateDefaultTyping(ptv, ObjectMapper.DefaultTyping.NON_FINAL);
     }
 
     /**

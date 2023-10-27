@@ -1,5 +1,9 @@
 package io.github.devsong.base.common.util;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+
+import io.github.devsong.base.log.http.Interceptor4HttpClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ServiceUnavailableRetryStrategy;
@@ -16,9 +20,6 @@ import org.apache.http.impl.client.StandardHttpRequestRetryHandler;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.ssl.SSLContexts;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
 
 /**
  * @author guanzhisong
@@ -60,6 +61,8 @@ public class HttpClientFactory {
                         .setKeepAliveStrategy(keepAliveStrategy)
                         .setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy())
                         .setConnectionManager(manager)
+                        .addInterceptorLast(new Interceptor4HttpClient.Interceptor4HttpClientRequest())
+                        .addInterceptorLast(new Interceptor4HttpClient.Interceptor4HttpClientResponse())
                         .build();
             }
         }
@@ -86,6 +89,8 @@ public class HttpClientFactory {
                 .setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy())
                 .setMaxConnPerRoute(CONN_PER_ROUTE)
                 .setMaxConnTotal(CONN_MAX_TOTAL)
+                .addInterceptorLast(new Interceptor4HttpClient.Interceptor4HttpClientRequest())
+                .addInterceptorLast(new Interceptor4HttpClient.Interceptor4HttpClientResponse())
                 .build();
         return client;
     }

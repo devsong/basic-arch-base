@@ -5,13 +5,12 @@ import ch.vorburger.mariadb4j.DBConfigurationBuilder;
 import ch.vorburger.mariadb4j.springframework.MariaDB4jSpringService;
 import com.zaxxer.hikari.HikariDataSource;
 import io.github.devsong.base.common.OSInfo;
+import java.util.Random;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;
 import org.flywaydb.core.Flyway;
-
-import javax.sql.DataSource;
-import java.util.Random;
 
 /**
  * date:  2023/4/20

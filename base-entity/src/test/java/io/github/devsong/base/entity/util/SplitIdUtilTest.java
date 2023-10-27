@@ -1,11 +1,11 @@
 package io.github.devsong.base.entity.util;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.github.devsong.base.entity.split.SplitIdUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class SplitIdUtilTest {
     static final Long SPLIT_KEY = 109L;

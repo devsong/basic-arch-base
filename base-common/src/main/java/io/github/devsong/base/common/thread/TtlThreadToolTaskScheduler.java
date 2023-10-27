@@ -2,10 +2,6 @@ package io.github.devsong.base.common.thread;
 
 import com.alibaba.ttl.TtlCallable;
 import com.alibaba.ttl.TtlRunnable;
-import org.springframework.scheduling.Trigger;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-import org.springframework.util.concurrent.ListenableFuture;
-
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
@@ -13,13 +9,15 @@ import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
+import org.springframework.scheduling.Trigger;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.util.concurrent.ListenableFuture;
 
 /**
  * @author zhisong.guan
  * @date 2022/10/13 19:42
  */
 public class TtlThreadToolTaskScheduler extends ThreadPoolTaskScheduler {
-
 
     /**
      * 错误提示语

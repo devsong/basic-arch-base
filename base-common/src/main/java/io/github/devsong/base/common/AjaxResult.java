@@ -3,7 +3,6 @@ package io.github.devsong.base.common;
 import io.github.devsong.base.common.util.IpUtil;
 import io.github.devsong.base.entity.BaseResponseDto;
 import io.github.devsong.base.entity.ResponseCode;
-
 import java.util.HashMap;
 
 /**

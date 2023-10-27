@@ -1,12 +1,11 @@
 package io.github.devsong.base.entity;
 
+import java.io.Serializable;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -125,7 +124,8 @@ public class PageResponseDto<T> implements Serializable {
      * @return
      */
     public static <T> PageResponseDto<T> error(int errorCode, String errorMsg) {
-        PageResponse pageResponse = PageResponse.builder().pageNum(1).pageSize(1).build();
+        PageResponse pageResponse =
+                PageResponse.builder().pageNum(1).pageSize(1).build();
         return build(errorCode, errorMsg, null, pageResponse);
     }
 

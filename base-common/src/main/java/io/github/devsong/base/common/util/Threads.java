@@ -1,8 +1,7 @@
 package io.github.devsong.base.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.*;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 线程相关工具类.

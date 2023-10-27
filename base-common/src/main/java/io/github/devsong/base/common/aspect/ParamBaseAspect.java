@@ -6,11 +6,10 @@ import io.github.devsong.base.common.util.IpUtil;
 import io.github.devsong.base.common.util.JsonUtil;
 import io.github.devsong.base.entity.*;
 import io.github.devsong.base.log.trace.TraceContext;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * 记录接口请求中的参数,类似于nginx/httpd中的access log功能

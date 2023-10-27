@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SysPerfLogDto implements Serializable {
+public class SysPerfHttpLogDto implements Serializable {
     /**
      *
      */
@@ -28,23 +28,15 @@ public class SysPerfLogDto implements Serializable {
      */
     private String spanId;
     /**
-     * 产品线
+     * 请求域名
      */
-    private String product;
+    private String host;
     /**
-     * 组名
+     * url
      */
-    private String groupName;
+    private String url;
     /**
-     * 应用名
-     */
-    private String app;
-    /**
-     * 类名
-     */
-    private String clazz;
-    /**
-     * 方法名
+     * http method
      */
     private String method;
     /**
@@ -59,10 +51,6 @@ public class SysPerfLogDto implements Serializable {
      * 调用结果0:成功,-1:系统异常,大于0业务异常
      */
     private Integer code;
-    /**
-     * 系统异常堆栈信息
-     */
-    private String errmsg;
     /**
      * 创建时间
      */

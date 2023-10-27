@@ -1,14 +1,13 @@
 package io.github.devsong.base.test;
 
 import io.github.devsong.base.test.truncate.TruncateService;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.mockito.Mockito;
 import org.mockito.internal.util.MockUtil;
 import org.springframework.context.ApplicationContext;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 public abstract class IntegrationBaseTest extends BaseTest {

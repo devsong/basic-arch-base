@@ -18,7 +18,8 @@ public class JdkWarningUtil {
             field.setAccessible(true);
             Object unsafe = field.get(null);
 
-            Method putObjectVolatile = unsafeClass.getDeclaredMethod("putObjectVolatile", Object.class, long.class, Object.class);
+            Method putObjectVolatile =
+                    unsafeClass.getDeclaredMethod("putObjectVolatile", Object.class, long.class, Object.class);
             Method staticFieldOffset = unsafeClass.getDeclaredMethod("staticFieldOffset", Field.class);
 
             Class loggerClass = Class.forName("jdk.internal.module.IllegalAccessLogger");

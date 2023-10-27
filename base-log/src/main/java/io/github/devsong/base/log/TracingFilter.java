@@ -2,12 +2,11 @@ package io.github.devsong.base.log;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.devsong.base.log.trace.*;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.MDC;
-
+import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.MDC;
 
 /**
  * 基于servlet filter实现

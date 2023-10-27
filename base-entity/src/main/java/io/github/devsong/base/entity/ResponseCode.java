@@ -1,9 +1,8 @@
 package io.github.devsong.base.entity;
 
-import lombok.Getter;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
 
 /**
  * 通用的异常返回Code

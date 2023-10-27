@@ -1,4 +1,4 @@
-package io.github.devsong.base.common.util;
+package io.github.devsong.base.log.http;
 
 import java.net.Inet6Address;
 import java.net.InetAddress;
@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author zhisong.guan
  */
 @Slf4j
-public class IpUtil {
+class IpUtil {
     private static volatile String LOCAL_IP = null;
 
     public static String getIpAddress(HttpServletRequest request) {

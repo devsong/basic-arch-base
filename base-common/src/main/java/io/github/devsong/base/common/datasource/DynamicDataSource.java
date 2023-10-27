@@ -1,9 +1,8 @@
 package io.github.devsong.base.common.datasource;
 
-import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
-
-import javax.sql.DataSource;
 import java.util.Map;
+import javax.sql.DataSource;
+import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
 /**
  * 动态数据源

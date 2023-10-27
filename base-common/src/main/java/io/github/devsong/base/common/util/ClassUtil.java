@@ -1,7 +1,5 @@
 package io.github.devsong.base.common.util;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
@@ -14,6 +12,7 @@ import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.stream.Stream;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ClassUtil {

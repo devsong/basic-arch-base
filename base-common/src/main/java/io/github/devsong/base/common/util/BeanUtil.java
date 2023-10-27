@@ -1,8 +1,7 @@
 package io.github.devsong.base.common.util;
 
-import org.springframework.beans.BeanUtils;
-
 import java.util.List;
+import org.springframework.beans.BeanUtils;
 
 /**
  * 对象copy
