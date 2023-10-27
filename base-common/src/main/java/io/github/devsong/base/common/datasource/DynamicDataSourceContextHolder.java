@@ -19,7 +19,12 @@ public class DynamicDataSourceContextHolder {
      * 设置数据源的变量
      */
     public static void setDataSourceType(String dsType) {
-        CONTEXT_HOLDER.get().push(dsType);
+        Deque<String> queue = CONTEXT_HOLDER.get();
+        if (queue == null) {
+            queue = new ArrayDeque<>();
+            CONTEXT_HOLDER.set(queue);
+        }
+        queue.push(dsType);
     }
 
     /**
