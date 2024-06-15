@@ -1,9 +1,8 @@
 package io.github.devsong.base.common.util;
 
+import io.github.devsong.base.log.http.Interceptor4HttpClient;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-
-import io.github.devsong.base.log.http.Interceptor4HttpClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ServiceUnavailableRetryStrategy;
@@ -32,7 +31,7 @@ public class HttpClientFactory {
     private static volatile CloseableHttpClient defaultClient;
     private static final int CONN_PER_ROUTE = 256;
     private static final int CONN_MAX_TOTAL = 1024;
-    private static final String DEFAUL_USER_AGENT = "user-agent-hc";
+    private static final String DEFAULT_USER_AGENT = "user-agent-hc";
     private static final int DEFAULT_RETRY = 3;
     private static final int KEEPALIVE = 30 * 1000;
     private static final String[] TLS_VERSION = {"TLSv1", "TLSv1.1", "TLSv1.2"};
@@ -56,7 +55,7 @@ public class HttpClientFactory {
 
                 defaultClient = HttpClientBuilder.create()
                         .setDefaultRequestConfig(requestConfig)
-                        .setUserAgent(DEFAUL_USER_AGENT)
+                        .setUserAgent(DEFAULT_USER_AGENT)
                         .setRetryHandler(new StandardHttpRequestRetryHandler(DEFAULT_RETRY, true))
                         .setKeepAliveStrategy(keepAliveStrategy)
                         .setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy())
@@ -83,7 +82,7 @@ public class HttpClientFactory {
         CloseableHttpClient client = HttpClientBuilder.create()
                 .setSSLSocketFactory(sslsf)
                 .setDefaultRequestConfig(requestConfig)
-                .setUserAgent(DEFAUL_USER_AGENT)
+                .setUserAgent(DEFAULT_USER_AGENT)
                 .setRetryHandler(new StandardHttpRequestRetryHandler(DEFAULT_RETRY, true))
                 .setKeepAliveStrategy(keepAliveStrategy)
                 .setServiceUnavailableRetryStrategy(new DefaultServiceUnavailableRetryStrategy())

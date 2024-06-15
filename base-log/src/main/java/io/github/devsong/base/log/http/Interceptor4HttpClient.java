@@ -1,18 +1,17 @@
 package io.github.devsong.base.log.http;
 
+import static com.google.common.collect.Maps.newHashMap;
+import static io.github.devsong.base.log.trace.TraceConstants.*;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.*;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.protocol.HttpContext;
 import org.slf4j.MDC;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-
-import static com.google.common.collect.Maps.newHashMap;
-import static io.github.devsong.base.log.trace.TraceConstants.*;
 
 /**
  * @author zhisong.guan
@@ -27,7 +26,8 @@ public class Interceptor4HttpClient {
     public static class Interceptor4HttpClientRequest implements HttpRequestInterceptor {
         @Override
         public void process(HttpRequest request, HttpContext context) throws HttpException, IOException {
-            Map<String, String> map = Optional.ofNullable(MDC.getCopyOfContextMap()).orElse(newHashMap());
+            Map<String, String> map =
+                    Optional.ofNullable(MDC.getCopyOfContextMap()).orElse(newHashMap());
 
             String traceId = map.get(TRACE_ID);
             // 当前线程调用中有traceId，则将该traceId进行透传
@@ -65,10 +65,17 @@ public class Interceptor4HttpClient {
             try {
                 long start = (Long) obj;
                 long elapsed = System.currentTimeMillis() - start;
-                String host = context.getAttribute(HOST) == null ? "" : context.getAttribute(HOST).toString();
-                String path = context.getAttribute(PATH) == null ? "" : context.getAttribute(PATH).toString();
-                String method = context.getAttribute(METHOD) == null ? "" : context.getAttribute(METHOD).toString();
-                HttpLogUtil.recordHttpPerfLog(host, path, method, response.getStatusLine().getStatusCode(), elapsed);
+                String host = context.getAttribute(HOST) == null
+                        ? ""
+                        : context.getAttribute(HOST).toString();
+                String path = context.getAttribute(PATH) == null
+                        ? ""
+                        : context.getAttribute(PATH).toString();
+                String method = context.getAttribute(METHOD) == null
+                        ? ""
+                        : context.getAttribute(METHOD).toString();
+                HttpLogUtil.recordHttpPerfLog(
+                        host, path, method, response.getStatusLine().getStatusCode(), elapsed);
             } catch (Exception e) {
                 log.error("record http client perf log error", e);
             }

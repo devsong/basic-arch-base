@@ -49,7 +49,7 @@ public class Interceptor4RestTemplate implements ClientHttpRequestInterceptor {
                     uri.getHost(),
                     uri.getPath(),
                     request.getMethodValue(),
-                    resp == null?-1: resp.getStatusCode().value(),
+                    resp == null ? -1 : resp.getStatusCode().value(),
                     elapsed);
         }
         return resp;

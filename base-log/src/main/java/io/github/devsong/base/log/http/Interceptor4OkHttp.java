@@ -45,7 +45,8 @@ public class Interceptor4OkHttp implements Interceptor {
         } finally {
             stopwatch.stop();
             long elapsed = stopwatch.elapsed(TimeUnit.MILLISECONDS);
-            HttpLogUtil.recordHttpPerfLog(uri.getHost(), uri.getPath(), request.method(), resp == null?-1: resp.code(), elapsed);
+            HttpLogUtil.recordHttpPerfLog(
+                    uri.getHost(), uri.getPath(), request.method(), resp == null ? -1 : resp.code(), elapsed);
         }
         return resp;
     }
